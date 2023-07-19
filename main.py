@@ -74,14 +74,18 @@ async def predict_image(items:Words):
                                 enhancer="gfpgan", background_enhancer=None, preprocess="full")
     end_time = time()
     logger.error(f"time: {end_time-start_time}")
-    with open(video_path, "rb") as file:
-            # 将视频内容进行 base64 编码
-            video_data = base64.b64encode(file.read()).decode("utf-8")
-        
-        # 构建响应数据
     response = {
-            "video_base64": video_data
-        }
+        "video_path": video_path
+    }
+    # Returns the video content in base64, disabled. Use mount to host to return video address
+    # with open(video_path, "rb") as file:
+    #         # b64 encode
+    #         video_data = base64.b64encode(file.read()).decode("utf-8")
+        
+    #    
+    # response = {
+    #         "video_base64": video_data
+    #     }
         
     return response
     

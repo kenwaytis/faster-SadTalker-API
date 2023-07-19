@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         HTTP_PROXY: ${HTTP_PROXY}
-    image: paidax/sadtalker:2.3.2
+    image: paidax/faster-SadTalker-API:3.0
     container_name: sadtalker
     deploy:
       resources:
@@ -18,8 +18,9 @@ services:
     volumes:
       - ./checkpoints:/home/SadTalker/checkpoints
       - ./gfpgan/weights:/home/SadTalker/gfpgan/weights
+      - ./results:/home/SadTalker/results
     ports:
       - 10364:10364
     environment:
       - TTS_SERVER=${TTS_SERVER}
-    command: uvicorn main:app --host 0.0.0.0 --port 10364
+    command: tail -f /dev/null
