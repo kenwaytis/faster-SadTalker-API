@@ -43,27 +43,11 @@
      ```
      [releases](https://github.com/kenwaytis/faster-SadTalker-API/releases)
 
-
-3. The docker-compose.yml file specifies the fixed image that is ready. If you want to build your own image from scratch, you can change the image name so that docker builds the image from source.
-
-   In the ***docker-compose.yml*** :
-   Modify the
-
-   ```
-   image: paidax/faster-sadtalker-api:0.1.3
-   ```
-
-   to
-
-   ```dockerfile
-   image: namespace/faster-sadtalker-api:0.1.3
-   ```
-
-4. Specify the TTS server address
+3. Specify the TTS server address
 
    Update: TTS service is now integrated into docker-compose, if you have customization needs you can refer to `localhost:9566/docs` to modify
 
-5. Starting the Container Service
+4. Starting the Container Service
 
    ```shell
    docker compose up
