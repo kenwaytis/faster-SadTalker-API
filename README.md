@@ -1,3 +1,16 @@
+## Note：
+
+1. This project is still being updated, if you have any questions you can ask in issues.
+2. Please note that the use of the model is subject to the original developer license usage.
+
+## Update:
+
+2023.8.2
+
+1. replace the default image (if there is a copyright issue, please issues inform, will change as soon as possible)
+2. update the TTS server, it is now a full runnable system
+3. Update the model download address. Please note that the use of the models is subject to the original developer license usage.
+
 ## What is it:
 
 1. This project is from OpenTalker/SadTalker
@@ -7,33 +20,41 @@
 ## Installation:
 
 1. Ensure that you have installed
-   1.docker
-   2.nvidia driver
-   3.nvidia container
-   4.TTS service is required for this service. You can get the API Docker image of the ready-made TTS from xxxx and start it with one click.
 
-2. The docker-compose.yml file specifies the fixed image that is ready. If you want to build your own image from scratch, you can change the image name so that docker builds the image from source.
+- docker
+- nvidia driver
+- nvidia container
+
+2. Download the model from the following address and store it in the corresponding directory according to the instructions.
+
+- SadTalker's checkpoints  
+Download all model files from the latest releases at . /checkpoints  
+[SadTalker releases](https://github.com/OpenTalker/SadTalker/releases)
+
+- gfpgan in onnx  
+Download all remaining model files in the latest releases of this project and store them in . /gfpgan/weights  
+[releases](https://github.com/kenwaytis/faster-SadTalker-API/releases)
+
+3. The docker-compose.yml file specifies the fixed image that is ready. If you want to build your own image from scratch, you can change the image name so that docker builds the image from source.
 
    In the ***docker-compose.yml*** :
    Modify the
 
    ```
-   image: paidax/sadtalker:2.3.2
+   image: paidax/faster-sadtalker-api:0.1.3
    ```
 
    to
 
    ```dockerfile
-   image: namespace/sadtalker:latest
+   image: namespace/faster-sadtalker-api:0.1.3
    ```
 
-3. Specify the TTS server address
+4. Specify the TTS server address
 
-   ```shell
-   export TTS_SERVER=http://your_tts_server
-   ```
+   Update: TTS service is now integrated into docker-compose, if you have customization needs you can refer to `localhost:9566/docs` to modify
 
-4. Starting the Container Service
+5. Starting the Container Service
 
    ```shell
    docker compose up

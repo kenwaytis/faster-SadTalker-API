@@ -1,12 +1,7 @@
 version: '3.8'
 services:
   sadtalker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        HTTP_PROXY: ${HTTP_PROXY}
-    image: paidax/faster-SadTalker-API:3.0
+    image: paidax/faster-sadtalker-api:0.1.3
     container_name: sadtalker
     deploy:
       resources:
@@ -22,5 +17,19 @@ services:
     ports:
       - 10364:10364
     environment:
-      - TTS_SERVER=${TTS_SERVER}
-    command: tail -f /dev/null
+      - TTS_SERVER=localhost:9566/tts
+    command: uvicorn main:app --reload --port 10364 --host 0.0.0.0
+  tts:
+    container_name: tts
+    image: paidax/tts_modelscope:0.1.3
+    ports:
+      - 9566:9566
+    restart: always
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: uvicorn main:app --reload --port 9566 --host 0.0.0.0

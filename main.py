@@ -69,23 +69,13 @@ async def predict_image(items:Words):
     data = get_facerender_data(coeff_path, crop_pic_path, first_coeff_path, audio_path, 
                                 facerender_batch_size, None, None, None,
                                 expression_scale=1, still_mode=True, preprocess="full")
-    start_time = time()
     video_path = animate_from_coeff.generate_deploy(data, save_dir, pic_path, crop_info, \
                                 enhancer="gfpgan", background_enhancer=None, preprocess="full")
-    end_time = time()
-    logger.error(f"time: {end_time-start_time}")
+    with open(video_path, "rb") as file:
+            video_data = base64.b64encode(file.read()).decode("utf-8")
     response = {
-        "video_path": video_path
-    }
-    # Returns the video content in base64, disabled. Use mount to host to return video address
-    # with open(video_path, "rb") as file:
-    #         # b64 encode
-    #         video_data = base64.b64encode(file.read()).decode("utf-8")
-        
-    #    
-    # response = {
-    #         "video_base64": video_data
-    #     }
+            "video_base64": video_data
+        }
         
     return response
     
