@@ -27,19 +27,22 @@
 
 2. Download the model from the following address and store it in the corresponding directory according to the instructions.
 
-- SadTalker's checkpoints  
-```shell
-mkdir -p checkpoints
-```  
-Download all model files from the latest releases at . /checkpoints  
-[SadTalker releases](https://github.com/OpenTalker/SadTalker/releases)
+   - **SadTalker's checkpoints**:  
+     Create the necessary directories using the following command:
+     ```shell
+     mkdir -p checkpoints
+     ```
+     Download all model files from the latest releases at `./checkpoints`.  
+     [SadTalker releases](https://github.com/OpenTalker/SadTalker/releases)
 
-- gfpgan in onnx  
-Download all remaining model files in the latest releases of this project and store them in . /gfpgan/weights  
-```shell
-mkdir -p gfpgan/weights
-```  
-[releases](https://github.com/kenwaytis/faster-SadTalker-API/releases)
+   - **gfpgan in onnx**:  
+     Download all remaining model files in the latest releases of this project and store them in `./gfpgan/weights`.  
+     You can create the directory using:
+     ```shell
+     mkdir -p gfpgan/weights
+     ```
+     [releases](https://github.com/kenwaytis/faster-SadTalker-API/releases)
+
 
 3. The docker-compose.yml file specifies the fixed image that is ready. If you want to build your own image from scratch, you can change the image name so that docker builds the image from source.
 
