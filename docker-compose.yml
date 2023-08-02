@@ -17,7 +17,7 @@ services:
     ports:
       - 10364:10364
     environment:
-      - TTS_SERVER=http://localhost:9566/tts
+      - TTS_SERVER=http://tts:9566/tts
     command: uvicorn main:app --reload --port 10364 --host 0.0.0.0
   tts:
     container_name: tts
