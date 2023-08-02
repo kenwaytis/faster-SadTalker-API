@@ -36,7 +36,7 @@ jobs:
         run: |
          if [ -f ".env" ] && [ -f "Dockerfile" ];then
             IMAGE_VERSION=$(grep -oP '(?<=VERSION = )\S+' .env)
-            REPO_NAME=$(echo $GITHUB_REPOSITORY | awk -F / '{print $2}')
+            REPO_NAME=$(echo $GITHUB_REPOSITORY | awk -F / '{print tolower($2)}')
             IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/$REPO_NAME:$IMAGE_VERSION
             docker build -t $IMAGE_NAME -f Dockerfile .
             docker push $IMAGE_NAME
